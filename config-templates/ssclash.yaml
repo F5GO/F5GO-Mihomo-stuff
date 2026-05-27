@@ -71,6 +71,7 @@ dns:
     - RULE-SET:youtube
     - RULE-SET:itdog-ru
     - RULE-SET:google-ai
+    - RULE-SET:trae
 
 keep-alive-idle: 15
 keep-alive-interval: 15
