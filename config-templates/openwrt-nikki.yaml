@@ -54,9 +54,7 @@ sniffer:
   skip-domain:
     - 'Mijia Cloud'
     - +.lan
-    - +.msftconnecttest.com
     - +.msftncsi.com
-    - +.3gppnetwork.org
     - +.openwrt.org
     - +.vsean.net
     - cudy.net
