@@ -364,7 +364,16 @@ rule-providers:
     interval: 43200
     path: ./ruleset/trae.yaml        
 
+  torrent-clients:
+    behavior: classical
+    type: http
+    format: yaml
+    url: "https://github.com/legiz-ru/mihomo-rule-sets/raw/main/other/torrent-clients.yaml"
+    interval: 43200
+    path: ./ruleset/torrent-clients.yaml
+
 rules:
+  - RULE-SET,torrent-clients,DIRECT
   - DOMAIN-KEYWORD,4pda,PROXY
   - DOMAIN-SUFFIX,ip.wtf,PROXY
   - RULE-SET,telegram,PROXY
