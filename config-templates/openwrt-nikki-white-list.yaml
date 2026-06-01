@@ -2,14 +2,6 @@ mode: rule
 tproxy-port: 7892
 mixed-port: 7890
 redir-port: 7891
-tun:
-  enable: true
-  device: nikki
-  stack: mixed
-  auto-route: false
-  auto-redirect: false
-  auto-detect-interface: false
-  disable-icmp-forwarding: true
 
 ipv6: false
 log-level: info
@@ -23,9 +15,7 @@ external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/downloa
 
 dns:
   enable: true
-  listen: '127.0.0.11:53'
   ipv6: false
-  cache-algorithm: arc
   respect-rules: true
   prefer-h3: true
   use-system-hosts: true
@@ -79,6 +69,9 @@ dns:
   nameserver:
     - https://dns.quad9.net/dns-query
     - https://dns10.quad9.net/dns-query
+  proxy-server-nameserver:
+    - https://dns.quad9.net/dns-query
+    - https://dns10.quad9.net/dns-query
 
 keep-alive-idle: 15
 keep-alive-interval: 15
@@ -127,7 +120,7 @@ warp-common: &warp-common
   dns: [1.1.1.1, 1.0.0.1, '2606:4700:4700::1111', '2606:4700:4700::1001']
 proxies:
   
-  - name: "\U0001F1F7\U0001F1FA WARP1"
+  - name: 🇷🇺 WARP1
     !!merge <<: *warp-common
     server: 162.159.192.1
     port: 4500
@@ -143,7 +136,7 @@ proxies:
       h3: 4
       i1: "<b 0xce000000010897a297ecc34cd6dd000044d0ec2e2e1ea2991f467ace4222129b5a098823784694b4897b9986ae0b7280135fa85e196d9ad980b150122129ce2a9379531b0fd3e871ca5fdb883c369832f730e272d7b8b74f393f9f0fa43f11e510ecb2219a52984410c204cf875585340c62238e14ad04dff382f2c200e0ee22fe743b9c6b8b043121c5710ec289f471c91ee414fca8b8be8419ae8ce7ffc53837f6ade262891895f3f4cecd31bc93ac5599e18e4f01b472362b8056c3172b513051f8322d1062997ef4a383b01706598d08d48c221d30e74c7ce000cdad36b706b1bf9b0607c32ec4b3203a4ee21ab64df336212b9758280803fcab14933b0e7ee1e04a7becce3e2633f4852585c567894a5f9efe9706a151b615856647e8b7dba69ab357b3982f554549bef9256111b2d67afde0b496f16962d4957ff654232aa9e845b61463908309cfd9de0a6abf5f425f577d7e5f6440652aa8da5f73588e82e9470f3b21b27b28c649506ae1a7f5f15b876f56abc4615f49911549b9bb39dd804fde182bd2dcec0c33bad9b138ca07d4a4a1650a2c2686acea05727e2a78962a840ae428f55627516e73c83dd8893b02358e81b524b4d99fda6df52b3a8d7a5291326e7ac9d773c5b43b8444554ef5aea104a738ed650aa979674bbed38da58ac29d87c29d387d80b526065baeb073ce65f075ccb56e47533aef357dceaa8293a523c5f6f790be90e4731123d3c6152a70576e90b4ab5bc5ead01576c68ab633ff7d36dcde2a0b2c68897e1acfc4d6483aaaeb635dd63c96b2b6a7a2bfe042f6aed82e5363aa850aace12ee3b1a93f30d8ab9537df483152a5527faca21efc9981b304f11fc95336f5b9637b174c5a0659e2b22e159a9fed4b8e93047371175b1d6d9cc8ab745f3b2281537d1c75fb9451871864efa5d184c38c185fd203de206751b92620f7c369e031d2041e152040920ac2c5ab5340bfc9d0561176abf10a147287ea90758575ac6a9f5ac9f390d0d5b23ee12af583383d994e22c0cf42383834bcd3ada1b3825a0664d8f3fb678261d57601ddf94a8a68a7c273a18c08aa99c7ad8c6c42eab67718843597ec9930457359dfdfbce024afc2dcf9348579a57d8d3490b2fa99f278f1c37d87dad9b221acd575192ffae1784f8e60ec7cee4068b6b988f0433d96d6a1b1865f4e155e9fe020279f434f3bf1bd117b717b92f6cd1cc9bea7d45978bcc3f24bda631a36910110a6ec06da35f8966c9279d130347594f13e9e07514fa370754d1424c0a1545c5070ef9fb2acd14233e8a50bfc5978b5bdf8bc1714731f798d21e2004117c61f2989dd44f0cf027b27d4019e81ed4b5c31db347c4a3a4d85048d7093cf16753d7b0d15e078f5c7a5205dc2f87e330a1f716738dce1c6180e9d02869b5546f1c4d2748f8c90d9693cba4e0079297d22fd61402dea32ff0eb69ebd65a5d0b687d87e3a8b2c42b648aa723c7c7daf37abcc4bb85caea2ee8f55bec20e913b3324ab8f5c3304f820d42ad1b9f2ffc1a3af9927136b4419e1e579ab4c2ae3c776d293d397d575df181e6cae0a4ada5d67ecea171cca3288d57c7bbdaee3befe745fb7d634f70386d873b90c4d6c6596bb65af68f9e5121e67ebf0d89d3c909ceedfb32ce9575a7758ff080724e1ab5d5f43074ecb53a479af21ed03d7b6899c36631c0166f9d47e5e1d4528a5d3d3f744029c4b1c190cbfbad06f5f83f7ad0429fa9a2719c56ffe3783460e166de2d8>"
   
-  - name: "\U0001F1F7\U0001F1FA WARP2"
+  - name: 🇷🇺 WARP2
     !!merge <<: *warp-common
     server: 162.159.192.1
     port: 4500
@@ -159,7 +152,7 @@ proxies:
       h3: 4
       i1: "<b 0xc7000000010809a1ed4edbbe7615000044d017a61a0d774f04290f119e701ef0035df2b0ed571b0b575e6a07246b856eb6ec036fef07f1e07b861251ad737abeb67e64be714c1dcd865312b1b6c35c089c997aeb5c18f808696fe97289513945d84ca846467603e94e44224877f2c1d3261e4ac18740be4bd064369c94fc08978d99b54bf615250998639010c1284248e1d73004b81fcb20b559d8a17eced7eab3964b5b88ca7a3b8579fc8c1c934189e77143b4ac434138114b1048651b56545b87acbef0952763538f3ddeb37cfc6d58b4881c3b719d7ff78f6ee1324a2914a32381c05a64c700466d280be007253bb030d179c4f1b3dc221e1974e2ee6d6e2b9e8d709159b5ef22e1783dbba845c20ca1c83b066c73835920ad70b806df0aee0351e3fc9ab1e42e8b2a30fe235ff0612eee19744949cecee0463b76514ad90c1f7ceaa557c18586ab561d49482e73c85d0143785da14a441bf82f78783b61cccd44aecb1947516e79b5ca5a6b3a8aed6040fae0eeabdc55a88dc19ade832d99fca90c7a629cacc07192d7e47e3c6a271b95b0ea3392562a06a1cab79f40ea92916ebee197b7b5f14b251824e1ed20ff2ca80b1f03a43e45157589bc61b978e97851025b3b7ccc17d291e1cb60fe48a5c26829dce11dd23c2e73265a9ebf8617c985e4fee4681e863f990061f4dea465a7d2524bd0edcf4b48d4b8f25fc359b15babd2637284a4774077dca60091f1a781cfee1bef9713dd5943a579d7470bc5970542fbb27fdf77880a8d8751b1f642c7a3f019a05ab94bf63d3525ef34e9290b5c8d477f2714e6d6e3e4d35c1983f5e16fda57fcdf071b513f8f088dbe8d5a97577d17a5383a496c3f313adfdd47c962bbaebd6aa13b46439eb742622c29ca067db0ec1853064c3cbbffe0a215a19fce47d49703ed58ebbd89721172d256d1cf30188106fb2f863186511401fad54d087aa2fb3d1b85768db386bd7102e8060ac157bac011acdcdae2799b9aee1467c3424013455bd028fcaacdc3c77d28ea199967d617ea7d0d0815f3cc407934a76d1293dccba210d1709a13e5dd67c9ba47cd113f5bdd740358eff13164159fd09bc2f7ec6cfa64d9df7e2e2f88706b0ff3a92ccf6f078456cfe0bdd89292cfe2680badc1eac9f7d36efe8eb6912c7b164508d13e6c0911c15f73c233cbe4fc70ff2ade1e1be4bbb738e0939159e2078a9438f05b756a003371f4861481c38f1cdd2d7b06deb62869e9fe79a8abaa920646fa2e8fa28f0d80c136376c7b56046bae4c05c0cdf64efb8c47bbfc5a1a4c0b045061ef0d71618e0d206a1d7f245fd5c03191b152673ba8dff8e1b8de7c50234a93cba91e3888adb228cc02beded4b1c0946797d3ef02dec2edb6ad0ac21f89f4be364c317da7c22440e9f358d512203f4b7ab20388af68b8915d0152db2c8a0687bfaea870f7529bb92a22b35bd79bc6d490591406346ecd78342ee3563c4883a8251679691c2d4e963397e24653520795511b018915374c954bddb940a9d7a16d1c8bd798fc7dbfb0599a7074e13f87e14efa8d511bb2579ec029b1bda18fe971b30fbe19e986ff2686a69bf3f1bb929de93ae70345ebca998b11e0a2b41890cba628d8f6e7c4e94790735e5299b4ff07cd3080f7d53c9cbe1911d2cd5925b3213e033c272506a87886cf761a283a779564d3241e3c28f632e166b5d756e1786ce077614c4444e3f2aed5decb3613b925ea3e558c21d4faf8ba54edd0f3a5d4>"
   
-  - name: "\U0001F1F7\U0001F1FA WARP3"
+  - name: 🇷🇺 WARP3
     !!merge <<: *warp-common
     server: 162.159.192.1
     port: 4500
@@ -187,6 +180,7 @@ proxies:
     public-key: APcJxf2UbdHXop3dZT3xBj1286WoIxIFSPBdSqCrVS4=
     allowed-ips: ['0.0.0.0/0']
     udp: true
+    PersistentKeepalive: 25 
     remote-dns-resolve: true
     dns: [10.2.0.1]
   
@@ -200,8 +194,23 @@ proxies:
     public-key: THs9F9xVAiGy48Mc0DnGGPFaVqypz4FtBLbn6Jw2BWM=
     allowed-ips: ['0.0.0.0/0']
     udp: true
+    PersistentKeepalive: 25    
     remote-dns-resolve: true
     dns: [10.2.0.1]  
+
+  - name: 🇳🇱 Proton 3
+    dialer-proxy: PROXY-RU
+    type: wireguard
+    server: 169.150.218.75
+    port: 51820
+    ip: 10.2.0.2
+    private-key: cHuP5vaUKbtB9UdWKfFbz6AEUyhXw3sAWx+/qp+5jHM=
+    public-key: wnDzTUyqN8KFDQJEj0vbYwfcEQ4A8FEIO0ErLApJCE4=
+    allowed-ips: ['0.0.0.0/0']
+    udp: true
+    PersistentKeepalive: 25
+    remote-dns-resolve: true
+    dns: [10.2.0.1]      
 
 proxy-groups:
 
@@ -244,18 +253,21 @@ rule-providers:
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Adobe/Adobe.yaml"
     interval: 43200
     path: ./ruleset/adobe.yaml
+  
   claude:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.yaml"
     interval: 43200
     path: ./ruleset/claude.yaml
+  
   discord-domain:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/fildunsky/clash_discord/refs/heads/main/discord-domain.yaml"
     interval: 43200
     path: ./ruleset/discord-domain.yaml
+  
   discord-ip:
     behavior: ipcidr
     type: http
@@ -263,42 +275,49 @@ rule-providers:
     url: "https://raw.githubusercontent.com/fildunsky/clash_discord/refs/heads/main/discord-ip.list"
     interval: 43200
     path: ./ruleset/discord-ip.list
+  
   facebook:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml"
     interval: 43200
     path: ./ruleset/facebook.yaml
+  
   github:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.yaml"
     interval: 43200
     path: ./ruleset/github.yaml
+  
   instagram:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram.yaml"
     interval: 43200
     path: ./ruleset/instagram.yaml
+  
   intel:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Intel/Intel.yaml"
     interval: 43200
     path: ./ruleset/intel.yaml
+  
   microsoft:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft.yaml"
     interval: 43200
     path: ./ruleset/microsoft.yaml
+  
   notion:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Notion/Notion.yaml"
     interval: 43200
     path: ./ruleset/notion.yaml
+  
   openai:
     behavior: classical
     type: http
@@ -306,6 +325,7 @@ rule-providers:
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml"
     interval: 43200
     path: ./ruleset/openai.yaml
+  
   ru-blocked:
     behavior: domain
     type: http
@@ -313,18 +333,21 @@ rule-providers:
     url: 'https://cdn.jsdelivr.net/gh/shvchk/unblock-net/lists/clash/ru-blocked'
     interval: 43200
     path: ./ruleset/ru-blocked.yaml
+  
   soundcloud:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/SoundCloud/SoundCloud.yaml"
     interval: 43200
     path: ./ruleset/soundcloud.yaml
+  
   spotify:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Spotify/Spotify.yaml"
     interval: 43200
     path: ./ruleset/spotify.yaml
+  
   steam:
     behavior: classical
     type: http
@@ -332,12 +355,14 @@ rule-providers:
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml"
     interval: 43200
     path: ./ruleset/steam.yaml
+  
   telegram:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Telegram/Telegram.yaml"
     interval: 43200
     path: ./ruleset/telegram.yaml
+  
   telegram-ip:
     behavior: ipcidr
     format: text
@@ -346,30 +371,35 @@ rule-providers:
     interval: 43200
     path: ./ruleset/telegram-ip.txt
     proxy: PROXY
+  
   tik-tok:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml"
     interval: 43200
     path: ./ruleset/tik-tok.yaml
+  
   twitter:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml"
     interval: 43200
     path: ./ruleset/twitter.yaml
+  
   whatsapp:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Whatsapp/Whatsapp.yaml"
     interval: 43200
     path: ./ruleset/whatsapp.yaml
+  
   youtube:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
     interval: 43200
     path: ./ruleset/youtube.yaml
+  
   itdog-ru:
     type: http
     behavior: classical
@@ -377,18 +407,21 @@ rule-providers:
     url: 'https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Russia/inside-clashx.lst'
     path: ./ruleset/itdog-ru.txt
     interval: 43200
+  
   google-ai:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/F5GO/F5GO-Mihomo-stuff/refs/heads/main/domains-list/google_ai.yaml"
     interval: 43200
     path: ./ruleset/google-ai.yaml
+  
   trae:
     behavior: classical
     type: http
     url: "https://raw.githubusercontent.com/F5GO/F5GO-Mihomo-stuff/refs/heads/main/domains-list/trae.yaml"
     interval: 43200
     path: ./ruleset/trae.yaml
+  
   bosch-hc:
     behavior: classical
     type: http
@@ -396,24 +429,15 @@ rule-providers:
     interval: 43200
     path: ./ruleset/bosch-hc.yaml
 
-  torrent-clients:
-    behavior: classical
-    type: http
-    format: yaml
-    url: "https://github.com/legiz-ru/mihomo-rule-sets/raw/main/other/torrent-clients.yaml"
-    interval: 43200
-    path: ./ruleset/torrent-clients.yaml
-
 rules:
-  - RULE-SET,torrent-clients,DIRECT
   - DOMAIN-KEYWORD,4pda,PROXY
   - DOMAIN-SUFFIX,ip.wtf,PROXY
   - RULE-SET,telegram,PROXY
   - RULE-SET,telegram-ip,PROXY
-  - RULE-SET,trae,PROXY
+  - RULE-SET,trae,AI
   - RULE-SET,tik-tok,PROXY
   - RULE-SET,whatsapp,PROXY
-  - RULE-SET,google-ai,PROXY
+  - RULE-SET,google-ai,AI
   - RULE-SET,adobe,PROXY
   - RULE-SET,claude,AI
   - RULE-SET,discord-domain,PROXY
@@ -443,3 +467,5 @@ rules:
   - RULE-SET,itdog-ru,PROXY
   - RULE-SET,bosch-hc,PROXY
   - MATCH,GLOBAL
+
+  #123 443 590-1400 3478-3482 5349 8443 45395 50000-50099 50318 59234
