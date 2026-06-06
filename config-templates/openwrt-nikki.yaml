@@ -174,6 +174,34 @@ proxies:
     remote-dns-resolve: true
     dns: [10.2.0.1]  
 
+  - name: 🇳🇱 Proton 4
+    dialer-proxy: PROXY-RU
+    type: wireguard
+    server: 185.107.56.143
+    port: 51820
+    ip: 10.2.0.2
+    private-key: oChqRTmLPIeQ1NVfT3DuYzQIyK9YtNEbFZToeCDa2XU=
+    public-key: xGIfeXZPiiMUX1lCAXA7VLX12RefzAZEevm6/Yd1yW4=
+    allowed-ips: ['0.0.0.0/0']
+    udp: true
+    PersistentKeepalive: 25
+    remote-dns-resolve: true
+    dns: [10.2.0.1]      
+
+  - name: 🇳🇱 Proton 5
+    dialer-proxy: PROXY-RU
+    type: wireguard
+    server: 169.150.218.91
+    port: 51820
+    ip: 10.2.0.2
+    private-key: UHmHFVI06O0WwO/I2EkEqKNbtokCm/NEhNtecbzhU3A=
+    public-key: 5/vmn7KNRq84aRD4xmEWJGjiIyAUL1svzXVCvtO8DEI=
+    allowed-ips: ['0.0.0.0/0']
+    udp: true
+    PersistentKeepalive: 25
+    remote-dns-resolve: true
+    dns: [10.2.0.1]      
+
   - name: "🇫🇮 Outline VPN-FI-13426276"
     dialer-proxy: PROXY-RU
     type: ss
