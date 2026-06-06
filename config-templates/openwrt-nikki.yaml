@@ -174,6 +174,35 @@ proxies:
     remote-dns-resolve: true
     dns: [10.2.0.1]  
 
+  - name: "🇫🇮 Outline VPN-FI-13426276"
+    dialer-proxy: PROXY-RU
+    type: ss
+    server: 193.47.60.186
+    port: 28687
+    cipher: chacha20-ietf-poly1305
+    password: "yKVMoB3AwiTEznpnoq2FYR"
+    udp: true
+
+  - name: "🇫🇮 VLESS Reality-FI-14132140"
+    type: vless
+    server: 185.242.247.206
+    port: 8443
+    uuid: c931f737-cafe-4e4f-998a-a65517941256
+
+    flow: xtls-rprx-vision
+    network: tcp
+
+    tls: true
+    udp: true
+    servername: cdnjs.com
+    client-fingerprint: chrome
+
+    reality-opts:
+      public-key: Ubibgn_MlW_zHo9LwjNH_b6SLNWwTJFwq7wW2ggLtUs
+      short-id: 88ce6b586fcaf681
+
+    encryption: "none"
+
 proxy-groups:
 
   - name: AI
@@ -207,6 +236,7 @@ proxy-groups:
     type: fallback
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Instagram.png
     proxies: [PROXY, PROXY-RU]
+    url: https://instagram.com/robots.txt
 
 rule-providers:
 
