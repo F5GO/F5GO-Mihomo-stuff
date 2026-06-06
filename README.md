@@ -113,7 +113,7 @@ rules:
 
 ## Заметки по списку Bosch Home Connect
 
-Список [bosch-home-connect.yaml](domains-list/bosch-home-connect.yaml) предназначен для умной техники Bosch Home Connect. В моих условиях он не дал стабильного результата: либо у Bosch периодические сбои, либо сильно ужесточена проверка региона/сети.
+Список доменов (domail list) [bosch-home-connect.yaml](domains-list/bosch-home-connect.yaml) предназначен для умной техники Bosch Home Connect. В моих условиях он не дал стабильного результата: либо у Bosch периодические сбои, либо сильно ужесточена проверка региона/сети.
 
 ## Контакты
 
