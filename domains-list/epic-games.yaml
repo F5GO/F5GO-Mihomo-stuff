@@ -1,0 +1,5 @@
+payload:
+  - DOMAIN-SUFFIX,epicgames.com
+  - DOMAIN-SUFFIX,unrealengine.com
+  - DOMAIN-SUFFIX,akamaized.net
+  - DOMAIN,js.hcaptcha.com
