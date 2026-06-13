@@ -1,5 +1,6 @@
 payload:
   - DOMAIN-SUFFIX,epicgames.com
-  - DOMAIN-SUFFIX,unrealengine.com
-  - DOMAIN-SUFFIX,akamaized.net
+  - DOMAIN,cdn1.unrealengine.com
+  - DOMAIN,cdn2.unrealengine.com
+  - DOMAIN,epicgames-download1.akamaized.net
   - DOMAIN,js.hcaptcha.com
