@@ -1,29 +1,34 @@
 payload:
   - DOMAIN-SUFFIX,kino.pub
   - DOMAIN-SUFFIX,kinopub.online
+  - DOMAIN-SUFFIX,kino.watch
   - DOMAIN-SUFFIX,iptv.online
-  - DOMAIN-SUFFIX,cdn4t.xyz
+  - DOMAIN-SUFFIX,themoviedb.org
+  - DOMAIN-SUFFIX,alador.space
   - DOMAIN-SUFFIX,smarttv.zeasn.tv
+  - DOMAIN-SUFFIX,smarttvcdn.online
   - DOMAIN-SUFFIX,pushbr.com
   - DOMAIN-SUFFIX,media.service-kp.com
-  - DOMAIN-SUFFIX,api.alador.space
-  - DOMAIN-SUFFIX,i0.wp.com
-  - DOMAIN-SUFFIX,cdn2site.com
-  - DOMAIN-SUFFIX,digital-cdn.net
-  - DOMAIN-SUFFIX,cdn2cdn.com
+  - DOMAIN-SUFFIX,support-kp.com
   - DOMAIN-SUFFIX,api.srvkp.com
   - DOMAIN-SUFFIX,api.ios-kp.store
-  - DOMAIN-SUFFIX,cdn-service.space
-  - DOMAIN-SUFFIX,smarttvcdn.online
-  - DOMAIN-SUFFIX,themoviedb.org
   - DOMAIN-SUFFIX,proxykp.xyz
+  - DOMAIN-SUFFIX,kpdl.link
+  - DOMAIN-SUFFIX,mos-gorsud.co
+  - DOMAIN-SUFFIX,cdn4t.xyz
+  - DOMAIN-SUFFIX,cdn-service.space
+  - DOMAIN-SUFFIX,cdnservices.link
+  - DOMAIN-SUFFIX,cdn2site.com
+  - DOMAIN-SUFFIX,cdn2cdn.com
+  - DOMAIN-SUFFIX,digital-cdn.net
   - DOMAIN-SUFFIX,mycdn.video
   - DOMAIN-SUFFIX,teleos.club
   - DOMAIN-SUFFIX,cdntogo.net
   - DOMAIN-SUFFIX,cdn32.lol
+  - DOMAIN-SUFFIX,cdn32.online
   - DOMAIN-SUFFIX,flexcdn.cloud
+  - DOMAIN-SUFFIX,zencdn.net
+  - DOMAIN-SUFFIX,i0.wp.com
   - DOMAIN-SUFFIX,ahc.ovh
   - DOMAIN-SUFFIX,gfw.ovh
-  - DOMAIN-SUFFIX,kpdl.link
-  - DOMAIN-SUFFIX,mos-gorsud.co
-  - DOMAIN-SUFFIX,kino.watch
+  - DOMAIN-SUFFIX,tsx.ovh
