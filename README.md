@@ -35,8 +35,8 @@
   - [bosch-home-connect.yaml](domains-list/bosch-home-connect.yaml) — Bosch Home Connect (в моём кейсе пока нестабильно/не побеждено)
 - [subnets](subnets) — списки подсетей:
   - [telegram-ip.txt](subnets/telegram-ip.txt)
-- [scripts] (scripts)⁠￼ — вспомогательные скрипты для OpenWrt / Mihomo:
-  - [ssclash-memory-limit.sh] (scripts/ssclash-memory-limit.sh)⁠￼ — ограничение потребления памяти Mihomo в SSClash через настройки Go Runtime.
+- [scripts](scripts) — вспомогательные скрипты для OpenWrt / Mihomo:
+  - [ssclash-memory-limit.sh](scripts/ssclash-memory-limit.sh) — ограничение потребления памяти Mihomo в SSClash через настройки Go Runtime.
 
 ## Формат списков доменов
 
