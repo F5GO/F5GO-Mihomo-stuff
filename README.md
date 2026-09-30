@@ -35,6 +35,8 @@
   - [bosch-home-connect.yaml](domains-list/bosch-home-connect.yaml) — Bosch Home Connect (в моём кейсе пока нестабильно/не побеждено)
 - [subnets](subnets) — списки подсетей:
   - [telegram-ip.txt](subnets/telegram-ip.txt)
+- [scripts] (scripts)⁠￼ — вспомогательные скрипты для OpenWrt / Mihomo:
+  - [ssclash-memory-limit.sh] (scripts/ssclash-memory-limit.sh)⁠￼ — ограничение потребления памяти Mihomo в SSClash через настройки Go Runtime.
 
 ## Формат списков доменов
 
@@ -114,6 +116,120 @@ rules:
 1. Возьмите [openwrt-nikki.yaml](config-templates/openwrt-nikki.yaml) или [openwrt-nikki-white-list.yaml](config-templates/openwrt-nikki-white-list.yaml).
 2. Замените секцию `proxies` под свои ноды.
 3. Проверьте `rules`: catch-all правило здесь — `MATCH,GLOBAL`, то есть «всё остальное» уйдёт в глобальную политику/группу, выбранную в UI.
+
+## Ограничение потребления RAM Mihomo в SSClash
+
+На OpenWrt-роутерах с небольшим объёмом оперативной памяти **Mihomo** может занимать значительную часть доступной RAM. Особенно заметно это на устройствах с **256 МБ RAM**, где рост потребления памяти может привести к сильному замедлению или зависанию роутера.
+
+Для таких устройств в репозитории есть скрипт:
+
+[`scripts/ssclash-memory-limit.sh`](scripts/ssclash-memory-limit.sh)
+
+Он добавляет в `procd`-сервис SSClash две настройки **Go Runtime**:
+
+```text
+GOGC=50
+GOMEMLIMIT=96MiB
+```
+
+### Что они делают
+
+#### `GOGC=50`
+
+Заставляет Garbage Collector Go запускаться чаще.
+
+Стандартное значение Go — `100`. Значение `50` уменьшает допустимый рост heap между циклами GC, снижая потребление памяти ценой небольшого увеличения нагрузки на CPU.
+
+#### `GOMEMLIMIT=96MiB`
+
+Устанавливает **soft memory limit** для Go Runtime. При приближении к лимиту Go начинает агрессивнее освобождать память.
+
+> **Важно:** `GOMEMLIMIT` — не жёсткий лимит RSS процесса. Mihomo всё равно может использовать больше указанного объёма, поскольку RSS включает память, которая не учитывается непосредственно лимитом Go Runtime.
+
+### Быстрая установка
+
+Подключитесь к OpenWrt по SSH и выполните:
+
+```sh
+wget -qO /tmp/ssclash-memory-limit.sh https://raw.githubusercontent.com/F5GO/F5GO-Mihomo-stuff/main/scripts/ssclash-memory-limit.sh && chmod +x /tmp/ssclash-memory-limit.sh && /tmp/ssclash-memory-limit.sh
+```
+
+По умолчанию будут установлены:
+
+```text
+GOGC=50
+GOMEMLIMIT=96MiB
+```
+
+Это стартовые значения, рассчитанные прежде всего на OpenWrt-устройства с **256 МБ RAM**.
+
+Скрипт:
+
+1. проверяет наличие SSClash;
+2. создаёт резервную копию `/etc/init.d/ssclash`;
+3. добавляет `GOGC` и `GOMEMLIMIT` в окружение `procd`;
+4. перезапускает SSClash;
+5. ждёт запуска Mihomo;
+6. проверяет, что Mihomo действительно унаследовал заданные переменные;
+7. показывает текущее потребление памяти Mihomo и системы.
+
+### Свои значения
+
+Можно передать `GOGC` и `GOMEMLIMIT` аргументами.
+
+Например:
+
+```sh
+/tmp/ssclash-memory-limit.sh 50 128MiB
+```
+
+установит:
+
+```text
+GOGC=50
+GOMEMLIMIT=128MiB
+```
+
+### Проверка
+
+Проверить, что настройки действительно применились к Mihomo:
+
+```sh
+PID=$(pgrep -f '^/opt/clash/bin/clash ')
+cat /proc/$PID/environ | tr '\0' '\n' | grep -E '^(GOGC|GOMEMLIMIT)='
+```
+
+Должно появиться:
+
+```text
+GOGC=50
+GOMEMLIMIT=96MiB
+```
+
+Текущее реальное потребление памяти Mihomo можно посмотреть так:
+
+```sh
+PID=$(pgrep -f '^/opt/clash/bin/clash ')
+grep -E 'VmRSS|RssAnon|RssFile|VmData' /proc/$PID/status
+free -h
+```
+
+### Откат
+
+Скрипт сохраняет исходный init-файл SSClash:
+
+```text
+/etc/init.d/ssclash.bak
+```
+
+Вернуть исходную конфигурацию:
+
+```sh
+cp /etc/init.d/ssclash.bak /etc/init.d/ssclash
+/etc/init.d/ssclash restart
+```
+
+> **Примечание:** после обновления или переустановки SSClash файл `/etc/init.d/ssclash` может быть перезаписан. В таком случае скрипт можно запустить повторно.
 
 ## Заметки по списку Bosch Home Connect
 
