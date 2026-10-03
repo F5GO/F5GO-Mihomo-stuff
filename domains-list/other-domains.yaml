@@ -3,3 +3,5 @@ payload:
   - DOMAIN-SUFFIX,namesilo.com
   - DOMAIN-SUFFIX,solitaire.net
   - DOMAIN-SUFFIX,notionusercontent.com
+  - DOMAIN-SUFFIX,themoviedb.org
+  - DOMAIN-SUFFIX,tmdb.org
