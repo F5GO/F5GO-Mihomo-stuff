@@ -3,3 +3,4 @@ payload:
   - DOMAIN-SUFFIX,themoviedb.org
   - DOMAIN-SUFFIX,tmdb.org
   - DOMAIN-SUFFIX,cub.best
+  - DOMAIN-SUFFIX,cub.black
