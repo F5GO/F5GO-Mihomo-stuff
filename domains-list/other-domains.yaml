@@ -3,11 +3,11 @@ payload:
   - DOMAIN-SUFFIX,namesilo.com
   - DOMAIN-SUFFIX,solitaire.net
   - DOMAIN-SUFFIX,notionusercontent.com
-  - DOMAIN,cdn.usefathom.com
-  - DOMAIN-SUFFIX,claude.ai
-  - DOMAIN-SUFFIX,claude.com
-  - DOMAIN-SUFFIX,claudeusercontent.com
-  - DOMAIN-SUFFIX,anthropic.com
-  - DOMAIN-SUFFIX,intercomcdn.com
-  - DOMAIN-KEYWORD,claude
-  - DOMAIN-KEYWORD,anthropic
+  - DOMAIN-SUFFIX,anthropic.com,PROXY
+  - DOMAIN-SUFFIX,claude.ai,PROXY
+  - DOMAIN-SUFFIX,claude.com,PROXY
+  - DOMAIN-SUFFIX,claudeusercontent.com,PROXY
+  - DOMAIN-SUFFIX,claudemcpcontent.com,PROXY
+  - DOMAIN-SUFFIX,datadoghq.com,PROXY        
+  - IP-CIDR,160.79.104.0/23,PROXY,no-resolve 
+  - IP-CIDR6,2607:6bc0::/48,PROXY,no-resolve
