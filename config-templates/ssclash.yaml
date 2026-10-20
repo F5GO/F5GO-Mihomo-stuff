@@ -224,7 +224,7 @@ proxy-groups:
     exclude-filter: "🇷🇺|Russia|Россия|Беларусь|Казахстан|Kazakhstan"
 
   - name: YOUTUBE
-    type: url-test
+    type: fallback
     interval: 30
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
     proxies: [PROXY-RU, PROXY]
