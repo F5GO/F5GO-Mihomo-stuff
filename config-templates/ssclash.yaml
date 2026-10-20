@@ -1,66 +1,92 @@
 mode: rule
-# Proxy Mode: MIXED (TCP via TPROXY port 7894, UDP via TUN/gVisor)
+# Proxy Mode: TPROXY
+tproxy-port: 7894
 ipv6: false
 log-level: error
 allow-lan: false
-mixed-port: 7890
-tproxy-port: 7894
+#socks-port: 7891
+#authentication:
+#  - "user1:pass1"
 unified-delay: true
 tcp-concurrent: true
-external-controller: 0.0.0.0:9090
+external-controller: 127.0.0.1:9090
 external-ui: ./ui
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+# external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip'
 
 hosts:
-  app.4pda.to: 31.131.253.250
-
+  ntc.party: 130.255.77.28
+  rutracker.org: 104.21.32.39
+  
+# DNS server settings
+# This section is optional. When not present, the DNS server will be disabled.
 dns:
   enable: true
   listen: 0.0.0.0:7874
   ipv6: false
-  default-nameserver:
-    - 9.9.9.9
-    - 149.112.112.112
-  nameserver:
-    - https://dns.quad9.net/dns-query
-    - https://dns10.quad9.net/dns-query
+  # Rules for specific domains
   nameserver-policy:
-    "+.lan": system
+    '+.polaris-iot.com': 'https://77.88.8.8/dns-query'
+    '+.lan': system
+    '+.local': system
+    '+.home.arpa': system
     "msftconnecttest.com": system
     "msftncsi.com": system
     "kion.ru": system
+      
+  # Bootstrap DNS
+  default-nameserver:
+    - https://77.88.8.8/dns-query
+    - https://8.8.8.8/dns-query
+  # Proxy nameserver
+  proxy-server-nameserver:
+    - https://77.88.8.8/dns-query
+    - https://8.8.8.8/dns-query
+  # Direct nameserver
+  direct-nameserver:
+    - https://77.88.8.8/dns-query
+    - https://8.8.8.8/dns-query
+  # Upstream DNS
+  nameserver:
+    - https://8.8.8.8/dns-query
+    - https://8.8.4.4/dns-query
+    # - https://8.8.8.8/dns-query#PROXY
+    # - https://8.8.4.4/dns-query#PROXY
 
 keep-alive-idle: 600
 keep-alive-interval: 30
+disable-keep-alive: false
 
 profile:
   store-selected: true
+  store-fake-ip: true
 
-routing-mark: 2
+# Provides a default traffic mark for outbound connections on Linux
+routing-mark: 2 # Prevent cyclic redirection
 
 sniffer:
   enable: true
   force-dns-mapping: true
   parse-pure-ip: true
+  override-destination: false
   sniff:
     HTTP:
-      ports:
-      - 80
-      - 8080-8880
+      ports: [80, 8080-8880]
       override-destination: true
     TLS:
-      ports:
-      - 443
-      - 8443
+      ports: [443, 8443]
+   # QUIC:
+   #   ports: [443, 8443]
   skip-domain:
     - 'Mijia Cloud'
     - +.lan
+    - +.local
+    - +.home.arpa
     - +.msftncsi.com
+    - +.msftconnecttest.com
     - +.openwrt.org
     - +.vsean.net
     - cudy.net
-    - +.msftconnecttest.com
-    - +.3gppnetwork
+    - +.3gppnetwork.org
 
 warp-common: &warp-common
   type: wireguard
@@ -180,50 +206,7 @@ proxies:
   remote-dns-resolve: true
   dns: [10.2.0.1]      
 
-- name: "🇫🇮 Outline VPN-FI-13426276"
-  dialer-proxy: PROXY-RU
-  type: ss
-  server: 193.47.60.186
-  port: 28687
-  cipher: chacha20-ietf-poly1305
-  password: "yKVMoB3AwiTEznpnoq2FYR"
-  udp: true
-
-- name: "🇫🇮 VLESS Reality-FI-14132140"
-  type: vless
-  server: 185.242.247.206
-  port: 8443
-  uuid: c931f737-cafe-4e4f-998a-a65517941256
-
-  flow: xtls-rprx-vision
-  network: tcp
-
-  tls: true
-  udp: true
-  servername: cdnjs.com
-  client-fingerprint: chrome
-
-  reality-opts:
-    public-key: Ubibgn_MlW_zHo9LwjNH_b6SLNWwTJFwq7wW2ggLtUs
-    short-id: 88ce6b586fcaf681
-
-    encryption: "none"
-
 proxy-groups:
-
-  - name: AI
-    type: fallback
-    interval: 300
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ChatGPT.png
-    include-all: true
-    exclude-filter: "🇷🇺|Russia|Россия|Беларусь|Казахстан|Kazakhstan"
-
-  - name: PROXY
-    type: url-test
-    interval: 300
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
-    include-all: true
-    exclude-filter: "🇷🇺|Russia|Россия|Kazakhstan"
 
   - name: PROXY-RU
     type: url-test
@@ -231,6 +214,20 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Russia.png
     include-all: true
     filter: "🇷🇺|Russia|Россия"
+    
+  - name: PROXY
+    type: url-test
+    interval: 300
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
+    include-all: true
+    exclude-filter: "🇷🇺|Russia|Россия|Kazakhstan"
+
+  - name: AI
+    type: fallback
+    interval: 300
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ChatGPT.png
+    include-all: true
+    exclude-filter: "🇷🇺|Russia|Россия|Беларусь|Казахстан|Kazakhstan"
 
   - name: YOUTUBE
     type: url-test
@@ -242,6 +239,11 @@ proxy-groups:
     type: fallback
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Instagram.png
     proxies: [PROXY, PROXY-RU]
+
+  - name: GitHub
+    type: fallback
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/960px-GitHub_Invertocat_Logo.svg.png
+    proxies: [PROXY-RU, PROXY]    
 
 rule-providers:
 
@@ -436,7 +438,7 @@ rules:
   - RULE-SET,discord-domain,PROXY
   - RULE-SET,discord-ip,PROXY
   - RULE-SET,facebook,INSTAGRAM
-  - RULE-SET,github,PROXY
+  - RULE-SET,github,GitHub
   - IP-CIDR,74.125.250.0/24,PROXY
   - IP-CIDR,74.125.247.128/32,PROXY
   - IP-CIDR,142.250.82.0/24,PROXY
