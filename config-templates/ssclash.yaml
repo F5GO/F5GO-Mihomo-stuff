@@ -155,56 +155,50 @@ proxies:
 - name: 🇳🇱 Proton
   dialer-proxy: PROXY-RU
   type: wireguard
-  server: 185.107.56.162
+  server: 169.150.218.55
   port: 51820
-  ip: 10.2.0.2
-  private-key: iP9A9ETYQdVOEJ6jvSl9alUouhG/biyzG40FgaYwh1A=
-  public-key: APcJxf2UbdHXop3dZT3xBj1286WoIxIFSPBdSqCrVS4=
-  allowed-ips: ['0.0.0.0/0']
+  ip: "10.2.0.2"
+  private-key: "oP2zdK+kQHul6xclX2V/sJ1JvJRuDsgK9aQezLGYoWg="
+  public-key: "+bLlZyXzg3fqOcI7d41IYI4LON2+oDm3Yv6y8lNQWE4="
+  allowed-ips: ["0.0.0.0/0"]
   udp: true
-  remote-dns-resolve: true
-  dns: [10.2.0.1]
+  persistent-keepalive: 20
   
 - name: 🇳🇱 Proton 2
   dialer-proxy: PROXY-RU
   type: wireguard
-  server: 169.150.218.85
+  server: 169.150.218.1
   port: 51820
-  ip: 10.2.0.2
-  private-key: eGzgiKjd401UdOnSqbbh/DA6G6n8imRIhINe3Pj2+UI=
-  public-key: THs9F9xVAiGy48Mc0DnGGPFaVqypz4FtBLbn6Jw2BWM=
-  allowed-ips: ['0.0.0.0/0']
+  ip: "10.2.0.2"
+  private-key: "8B1Amx5BVjxPJO5lu3QTe+v0iLm5nyEFpM/kiRssJk8="
+  public-key: "bF0RahG8sdUqVt/3Q3Awy46kJ06zV0mzywelGyM/DVw="
+  allowed-ips: ["0.0.0.0/0"]
   udp: true
-  remote-dns-resolve: true
-  dns: [10.2.0.1]  
+  persistent-keepalive: 20
+
+- name: 🇳🇱 Proton 3
+  dialer-proxy: PROXY-RU
+  type: wireguard
+  server: 169.150.218.16
+  port: 51820
+  ip: "10.2.0.2"
+  private-key: "YPLapmg6sr+7Sh7KV5u6bKupXE7yeeH1TicqcF7jHEc="
+  public-key: "W58CuqiAcrmARA8pCyBHjTfSz2WzfW27a3zvN1EvdFQ="
+  allowed-ips: ["0.0.0.0/0"]
+  udp: true
+  persistent-keepalive: 20  
 
 - name: 🇳🇱 Proton 4
   dialer-proxy: PROXY-RU
   type: wireguard
-  server: 185.107.56.143
+  server: 185.107.56.130
   port: 51820
-  ip: 10.2.0.2
-  private-key: oChqRTmLPIeQ1NVfT3DuYzQIyK9YtNEbFZToeCDa2XU=
-  public-key: xGIfeXZPiiMUX1lCAXA7VLX12RefzAZEevm6/Yd1yW4=
-  allowed-ips: ['0.0.0.0/0']
+  ip: "10.2.0.2"
+  private-key: "qP8I6QS5o/l3ixrHYex8GETkpvd+K+YvIsC67qNDFlk="
+  public-key: "aQ8bxW84kPY54cmd75U9rIHzg/mlpV1mJluXdm/6hFI="
+  allowed-ips: ["0.0.0.0/0"]
   udp: true
-  PersistentKeepalive: 25
-  remote-dns-resolve: true
-  dns: [10.2.0.1]      
-
-- name: 🇳🇱 Proton 5
-  dialer-proxy: PROXY-RU
-  type: wireguard
-  server: 169.150.218.91
-  port: 51820
-  ip: 10.2.0.2
-  private-key: UHmHFVI06O0WwO/I2EkEqKNbtokCm/NEhNtecbzhU3A=
-  public-key: 5/vmn7KNRq84aRD4xmEWJGjiIyAUL1svzXVCvtO8DEI=
-  allowed-ips: ['0.0.0.0/0']
-  udp: true
-  PersistentKeepalive: 25
-  remote-dns-resolve: true
-  dns: [10.2.0.1]      
+  persistent-keepalive: 20    
 
 proxy-groups:
 
