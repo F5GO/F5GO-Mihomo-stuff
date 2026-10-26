@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VLESS → Mihomo — конвертер</title>
+<style>
+:root{color-scheme:light;--ink:#17233b;--muted:#64748b;--line:#dce5f2;--blue:#2864e8;--blue2:#174fc8;--bg:#f5f8fd;--card:#fff;--green:#159766;--red:#c83d4d}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#f8fbff,#f2f6fc);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:34px 24px 28px}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:28px}
+.brand{display:flex;gap:16px;align-items:flex-start}.logo{width:56px;height:56px;display:grid;place-items:center;background:#e2edff;color:var(--blue);border:1px solid #c9dcff;border-radius:16px;font-size:28px;flex-shrink:0}
+h1{font-size:clamp(27px,4vw,40px);line-height:1.15;letter-spacing:-1.2px;margin:0 0 9px;font-weight:780}
+.subtitle{color:#536782;font-size:16px;margin:0}.badge{white-space:nowrap;border:1px solid #d7e4fb;border-radius:999px;background:#edf4ff;color:#2756a9;padding:8px 13px;font-size:12px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel,.info{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 18px #213d6810}
+.panel{padding:20px;min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+h2{font-size:19px;letter-spacing:-.3px;margin:0;display:flex;align-items:center;gap:10px}.icon{font-size:21px;color:var(--blue)}
+textarea,pre{width:100%;margin:0;border:1px solid #d4deed;border-radius:12px;background:#fbfdff;color:#24344e;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+textarea{height:255px;padding:14px;resize:vertical;outline:none}textarea:focus{border-color:#80a8ff;box-shadow:0 0 0 3px #2e6cf018}
+.hint{font-size:12px;color:var(--muted);margin:10px 0 16px}.settings{border:1px solid var(--line);border-radius:12px;margin:0 0 16px;overflow:hidden}
+.settings summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;background:#f7faff;display:flex;justify-content:space-between}.settings summary::-webkit-details-marker{display:none}
+.settings-body{padding:13px 14px;border-top:1px solid var(--line);display:grid;gap:13px}
+.option{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}.option strong{display:block;font-size:13px}.option small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue);margin-top:2px;flex-shrink:0}
+.actions{display:flex;gap:10px}.btn{border:1px solid #d7e0ef;border-radius:10px;padding:11px 15px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;background:#fff;color:#34445e;transition:.15s}.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px #193c7415}.btn.primary{background:var(--blue);border-color:var(--blue);color:white;flex:1}.btn.primary:hover{background:var(--blue2)}.btn:focus-visible{outline:3px solid #9bbaff}
+.output{position:relative;min-height:255px;max-height:480px;overflow:auto;padding:14px 16px;white-space:pre;tab-size:2}.output.empty{display:flex;align-items:center;justify-content:center;white-space:normal;color:#8a98ad;text-align:center}
+.status{font-size:12px;color:var(--muted);margin-top:10px;min-height:18px}.status.error{color:var(--red)}.status.ok{color:var(--green)}
+.lower{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:16px;margin-top:18px}.info{padding:18px}.info h3{margin:0 0 10px;font-size:15px}.info p,.info li{font-size:13px;color:#596a83}.info p{margin:0}.info ul{padding-left:18px;margin:0}.info li+li{margin-top:6px}.tag{display:inline-block;background:#edf4ff;color:#2756a9;border-radius:6px;padding:2px 6px;font:12px ui-monospace,monospace}
+footer{text-align:center;color:#8a98ad;font-size:12px;margin-top:22px}
+@media(max-width:850px){header{display:block}.badge{display:inline-block;margin:15px 0 0}.grid,.lower{grid-template-columns:1fr}.output{min-height:220px}.wrap{padding:22px 14px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="logo" aria-hidden="true">↗</div><div><h1>VLESS → Mihomo</h1><p class="subtitle">Конвертер VLESS-ссылок из 3x-ui и Xray в готовый YAML для Mihomo / Clash Meta.</p></div></div>
+  <div class="badge">REALITY · TLS · VISION</div>
+</header>
+
+<main class="grid">
+<section class="panel">
+  <div class="panel-head"><h2><span class="icon">↗</span> VLESS-ссылка</h2><button class="btn" id="pasteBtn" type="button">Вставить</button></div>
+  <textarea id="input" spellcheck="false" aria-label="VLESS ссылки" placeholder="Вставьте vless://… ссылку сюда. Можно вставить несколько ссылок — по одной на строку."></textarea>
+  <p class="hint">Поддерживаются параметры Reality, SNI, Vision, fingerprint, spider-x и support-x25519mlkem768.</p>
+  <details class="settings" open>
+    <summary>Дополнительные настройки <span>⌄</span></summary>
+    <div class="settings-body">
+      <label class="option"><span><strong>Добавлять spider-x (spx)</strong><small>Переносить spx в reality-opts, если он указан в ссылке.</small></span><input id="spx" type="checkbox" checked></label>
+      <label class="option"><span><strong>Добавлять support-x25519mlkem768</strong><small>Сохранять параметр из ссылки. Полезно для совместимости с новыми версиями Xray.</small></span><input id="mlkem" type="checkbox" checked></label>
+      <label class="option"><span><strong>Добавлять udp: true</strong><small>Включать UDP для узла.</small></span><input id="udp" type="checkbox" checked></label>
+      <label class="option"><span><strong>Отключить проверку сертификата</strong><small>Устанавливает skip-cert-verify: true. Обычно оставляйте выключенным.</small></span><input id="skip" type="checkbox"></label>
+    </div>
+  </details>
+  <div class="actions"><button class="btn primary" id="convertBtn" type="button">⇄ Конвертировать</button><button class="btn" id="clearBtn" type="button">Очистить</button></div>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+</section>
+
+<section class="panel">
+  <div class="panel-head"><h2><span class="icon">▤</span> Конфигурация Mihomo</h2><button class="btn" id="copyBtn" type="button">Копировать YAML</button></div>
+  <pre id="output" class="output empty" aria-label="Результат YAML">Здесь появится YAML-конфигурация.</pre>
+  <div class="actions" style="margin-top:12px"><button class="btn" id="downloadBtn" type="button">Скачать .yaml</button><button class="btn" id="exampleBtn" type="button">Загрузить пример</button></div>
+</section>
+</main>
+
+<section class="lower">
+  <article class="info"><h3>ⓘ Что делает конвертер?</h3><p>Разбирает VLESS URI, извлекает UUID, сервер, порт и параметры запроса, затем формирует YAML-узел Mihomo. Все операции выполняются локально в браузере — ссылки никуда не отправляются.</p></article>
+  <article class="info"><h3>✓ Параметры Reality</h3><ul><li><span class="tag">pbk</span> → <span class="tag">public-key</span></li><li><span class="tag">sid</span> → <span class="tag">short-id</span></li><li><span class="tag">sni</span> → <span class="tag">servername</span></li><li><span class="tag">spx</span> → <span class="tag">spider-x</span></li><li><span class="tag">support-x25519mlkem768</span> сохраняется, если передан в ссылке</li></ul></article>
+  <article class="info"><h3>⚠ Перед подключением</h3><ul><li>Версия Mihomo должна поддерживать используемые параметры.</li><li><span class="tag">servername</span>, ключ, short-id и flow должны соответствовать серверу.</li><li>Если узел не работает, проверьте логи Mihomo и конфигурацию Xray.</li></ul></article>
+</section>
+<footer>VLESS → Mihomo · автономный HTML-конвертер · конфигурация создаётся на вашем устройстве</footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+let lastYaml = "";
+
+function yamlQuote(value) {
+  const s = String(value ?? "");
+  // Quote strings conservatively to keep generated YAML valid and predictable.
+  return "'" + s.replace(/'/g, "''").replace(/\r/g, "\\r").replace(/\n/g, "\\n") + "'";
+}
+function yamlScalar(value) {
+  if (typeof value === "boolean" || typeof value === "number") return String(value);
+  return yamlQuote(value);
+}
+function decodeMaybe(s) {
+  try { return decodeURIComponent(s); } catch { return s; }
+}
+function parseVless(line, index) {
+  const raw = line.trim();
+  if (!raw) return null;
+  if (!/^vless:\/\//i.test(raw)) throw new Error(`Строка ${index}: ссылка должна начинаться с vless://`);
+  let u;
+  try { u = new URL(raw); } catch { throw new Error(`Строка ${index}: не удалось разобрать ссылку.`); }
+  const uuid = decodeURIComponent(u.username || "");
+  const host = u.hostname;
+  const port = Number(u.port || 443);
+  if (!uuid || !host || !Number.isInteger(port) || port < 1 || port > 65535)
+    throw new Error(`Строка ${index}: проверьте UUID, сервер и порт.`);
+  const q = u.searchParams;
+  const security = (q.get("security") || "none").toLowerCase();
+  const network = (q.get("type") || "tcp").toLowerCase();
+  const name = decodeMaybe(u.hash.slice(1)) || `VLESS-${index}`;
+  const node = [
+    ["name", name],
+    ["type", "vless"],
+    ["server", host],
+    ["port", port],
+    ["uuid", uuid],
+    ["encryption", q.get("encryption") || ""],
+    ["network", network]
+  ];
+  if ($("udp").checked) node.push(["udp", true]);
+  const tls = security === "tls" || security === "reality" || q.get("tls") === "true";
+  node.push(["tls", tls]);
+  const sni = q.get("sni") || q.get("servername");
+  if (sni) node.push(["servername", sni]);
+  const fp = q.get("fp") || q.get("fingerprint");
+  if (fp) node.push(["client-fingerprint", fp]);
+  const flow = q.get("flow");
+  if (flow) node.push(["flow", flow]);
+  if ($("skip").checked) node.push(["skip-cert-verify", true]);
+
+  const reality = security === "reality" || q.has("pbk") || q.has("public-key");
+  if (reality) {
+    const opts = [];
+    const pbk = q.get("pbk") || q.get("public-key");
+    const sid = q.get("sid") || q.get("short-id");
+    if (pbk) opts.push(["public-key", pbk]);
+    if (sid) opts.push(["short-id", sid]);
+    if ($("mlkem").checked && q.get("support-x25519mlkem768") !== null) {
+      const rawValue = (q.get("support-x25519mlkem768") || "").toLowerCase();
+      opts.push(["support-x25519mlkem768", rawValue === "true" || rawValue === "1"]);
+    }
+    const spx = q.get("spx") ?? q.get("spider-x");
+    if ($("spx").checked && spx !== null && spx !== "") opts.push(["spider-x", decodeMaybe(spx)]);
+    node.push(["reality-opts", opts]);
+  }
+  return node;
+}
+function nodeToYaml(node) {
+  let out = "- name: " + yamlQuote(node[0][1]);
+  for (const [key, value] of node.slice(1)) {
+    if (key === "reality-opts") {
+      out += "\n  reality-opts:";
+      if (!value.length) out += "\n    {}";
+      else for (const [k, v] of value) out += `\n    ${k}: ${yamlScalar(v)}`;
+    } else {
+      out += `\n  ${key}: ${yamlScalar(value)}`;
+    }
+  }
+  return out;
+}
+function convert() {
+  const lines = $("input").value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  if (!lines.length) { setStatus("Вставьте одну или несколько VLESS-ссылок.", "error"); return; }
+  try {
+    const nodes = lines.map((line, i) => parseVless(line, i + 1)).filter(Boolean);
+    lastYaml = nodes.map(nodeToYaml).join("\n\n") + "\n";
+    $("output").textContent = lastYaml;
+    $("output").classList.remove("empty");
+    setStatus(`Готово: преобразовано ссылок — ${nodes.length}.`, "ok");
+  } catch (e) { lastYaml = ""; $("output").textContent = "Не удалось создать конфигурацию."; $("output").classList.add("empty"); setStatus(e.message, "error"); }
+}
+function setStatus(msg, cls="") { $("status").textContent = msg; $("status").className = "status " + cls; }
+$("convertBtn").addEventListener("click", convert);
+$("clearBtn").addEventListener("click", () => { $("input").value=""; $("output").textContent="Здесь появится YAML-конфигурация."; $("output").classList.add("empty"); lastYaml=""; setStatus(""); });
+$("copyBtn").addEventListener("click", async () => {
+  if (!lastYaml) { setStatus("Сначала конвертируйте ссылку.", "error"); return; }
+  try { await navigator.clipboard.writeText(lastYaml); setStatus("YAML скопирован в буфер обмена.", "ok"); }
+  catch { const r=document.createRange(); r.selectNodeContents($("output")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); setStatus("Автокопирование недоступно — результат выделен.", "error"); }
+});
+$("pasteBtn").addEventListener("click", async () => {
+  try { $("input").value = await navigator.clipboard.readText(); setStatus("Текст вставлен. Нажмите «Конвертировать».", "ok"); }
+  catch { $("input").focus(); setStatus("Вставьте ссылку сочетанием клавиш Ctrl/Cmd+V.", ""); }
+});
+$("downloadBtn").addEventListener("click", () => {
+  if (!lastYaml) { setStatus("Сначала конвертируйте ссылку.", "error"); return; }
+  const blob = new Blob([lastYaml], {type:"text/yaml;charset=utf-8"});
+  const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="mihomo-proxies.yaml"; a.click(); URL.revokeObjectURL(a.href);
+});
+$("exampleBtn").addEventListener("click", () => {
+  $("input").value = "vless://28dee57c-50fd-457b-b158-51f03b2d944f@test.f5go.fun:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=I4aP8Ugi4imwxsxB2ilf80DSCsS8bvtb63errjECQE0&security=reality&sid=cde993e6d3f488&sni=icloud.com&spx=%2F9015746e4e7a59e&support-x25519mlkem768=true&type=tcp#F5";
+  convert();
+});
+$("input").addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter") convert(); });
+</script>
+</body>
+</html>
