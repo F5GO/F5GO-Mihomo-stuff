@@ -5,3 +5,4 @@ payload:
   - DOMAIN-SUFFIX,cub.best
   - DOMAIN-SUFFIX,cub.black
   - DOMAIN-SUFFIX,imagetmdb.com
+  - DOMAIN-SUFFIX,image.tmdb.org
