@@ -5,11 +5,11 @@ payload:
   - DOMAIN-SUFFIX,notionusercontent.com
   - DOMAIN-SUFFIX,4pda.to
 # Navidrome Lyrics  
-  - DOMAIN-SUFFIX,lrclib.net,PROXY
-  - DOMAIN-SUFFIX,lrcmux.dev,PROXY
-  - DOMAIN-SUFFIX,lyrics.ovh,PROXY
-  - DOMAIN-SUFFIX,kugou.com,PROXY
-  - DOMAIN-SUFFIX,kugou.net,PROXY
-  - DOMAIN-SUFFIX,kuwo.cn,PROXY
-  - DOMAIN-SUFFIX,163.com,PROXY
-  - DOMAIN-SUFFIX,qq.com,PROXY
+  - DOMAIN-SUFFIX,lrclib.net
+  - DOMAIN-SUFFIX,lrcmux.dev
+  - DOMAIN-SUFFIX,lyrics.ovh
+  - DOMAIN-SUFFIX,kugou.com
+  - DOMAIN-SUFFIX,kugou.net
+  - DOMAIN-SUFFIX,kuwo.cn
+  - DOMAIN-SUFFIX,163.com
+  - DOMAIN-SUFFIX,qq.com
