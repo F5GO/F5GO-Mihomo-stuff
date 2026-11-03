@@ -17,3 +17,9 @@ payload:
   - DOMAIN-SUFFIX,Last.fm
   - DOMAIN-SUFFIX,groq.com
   - DOMAIN-SUFFIX,x.ai
+  - DOMAIN-SUFFIX,grok.com
+  - DOMAIN-KEYWORD,xai
+  - DOMAIN-KEYWORD,grok
+  - DOMAIN-KEYWORD,groq  
+  - DOMAIN-SUFFIX,x.com
+  - DOMAIN-SUFFIX,twitter.com
