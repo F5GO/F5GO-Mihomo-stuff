@@ -16,3 +16,4 @@ payload:
   - DOMAIN-SUFFIX,stixoi.info
   - DOMAIN-SUFFIX,Last.fm
   - DOMAIN-SUFFIX,groq.com
+  - DOMAIN-SUFFIX,x.ai
